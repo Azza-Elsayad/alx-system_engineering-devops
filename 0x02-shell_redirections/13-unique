@@ -1,21 +1,2 @@
 #!/bin/bash
-
-# Read input words from standard input
-read -a words
-
-# Count occurrences of each word
-declare -A word_counts
-for word in "${words[@]}"; do
-    if [[ -n "${word_counts[$word]}" ]]; then
-        ((word_counts[$word]++))
-    else
-        word_counts[$word]=1
-    fi
-done
-
-# Print words that appear exactly once, sorted
-for word in "${!word_counts[@]}"; do
-    if [[ ${word_counts[$word]} -eq 1 ]]; then
-        echo "$word"
-    fi
-done | sort
+sort | uniq -u
